@@ -36,7 +36,7 @@ ENDIF (WIN32)
   SET ( LOG4CPP_LIBRARY_NAME "log4cpp" )
 #ENDIF ( CMAKE_BUILD_TYPE MATCHES "Debug" )
 
-ADD_LIBRARY ( ${LOG4CPP_LIBRARY_NAME} SHARED
+set ( SOURCES
   src/Appender.cpp
   src/AppenderSkeleton.cpp
   src/AppendersFactory.cpp
@@ -86,6 +86,8 @@ ADD_LIBRARY ( ${LOG4CPP_LIBRARY_NAME} SHARED
   src/PortabilityImpl.cpp
   src/AbortAppender.cpp
 )
+
+ADD_LIBRARY ( ${LOG4CPP_LIBRARY_NAME} ${SOURCES} )
 
 IF (WIN32)
   TARGET_LINK_LIBRARIES (${LOG4CPP_LIBRARY_NAME} kernel32 user32 ws2_32 advapi32 )
